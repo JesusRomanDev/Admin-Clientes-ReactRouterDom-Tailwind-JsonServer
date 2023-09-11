@@ -1,14 +1,19 @@
-import {Outlet, Link} from 'react-router-dom' //Link nos sirve para reemplazarlos por los a (anchors) para mejor performance
+import {Outlet, Link, useLocation} from 'react-router-dom' //Link nos sirve para reemplazarlos por los a (anchors) para mejor performance
+//useLocation nos servira para poner codigo de JS en nuestro archivo y usar condicionales para algunas clases
 
 function Layout() {
+  //Creando nuestra variable de location para usar el useLocation();
+  const location = useLocation();
+
+  console.log(location); //en el location encontramos cosas como un key (cambiara siempre), un pathname (direccion donde estamos), search (si realizamos busquedas), entre otros
   return (
     <div className='md:flex md:min-h-screen'>
         <aside className="md:w-1/4 bg-blue-800 px-5 py-10">
           <h2 className='text-4xl font-black text-center text-white'>CRM - Clientes</h2>
 
           <nav className='mt-10'>
-            <Link className='text-2xl block mt-2 hover:text-blue-300 text-white' to="/">Clientes</Link> {/* el href se reemplaza por el "to" */}
-            <Link className='text-2xl block mt-2 hover:text-blue-300 text-white' to="/clientes/nuevo">Nuevo Cliente</Link>
+            <Link className={`${location.pathname === '/' ? 'text-blue-300' : 'text-white'} text-2xl block mt-2 hover:text-blue-300 text-white`} to="/">Clientes</Link> {/* el href se reemplaza por el "to" */}
+            <Link className={`${location.pathname === '/clientes/nuevo' ? 'text-blue-300' : 'text-white'} text-2xl block mt-2 hover:text-blue-300 text-white`} to='/clientes/nuevo'>Nuevo Cliente</Link>
           </nav>
         </aside>
 
