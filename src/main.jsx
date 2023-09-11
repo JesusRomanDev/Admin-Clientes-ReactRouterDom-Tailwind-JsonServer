@@ -15,7 +15,7 @@ const router = createBrowserRouter([ //createBrowserRouter toma un array de obje
       {
         index: true, /* aqui no se le define un path porque este "children" se va a cargar cuando visitemos la pagina principal, es y no es un children a la vez */
         element: <Index />,
-        loader: clientesLoader
+        loader: clientesLoader /* para el componente de Index su loader va a ser clientesLoader */
       },
       {
           path: '/clientes/nuevo',
