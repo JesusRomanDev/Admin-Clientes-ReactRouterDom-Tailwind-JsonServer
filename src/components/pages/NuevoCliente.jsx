@@ -52,6 +52,7 @@ function NuevoCliente() {
         <div className='bg-white shadow rounded-md md:w-3/4 mx-auto px-5 py-10 mt-20'>
 
           {errores?.length && errores.map((error, i)=> <Error key={i}>{error}</Error>)} {/* como vamos a tener multiples errores, entonces le añadimos un prop key={i}, la posicion que seria ese error */}
+          {/* errores?. es un optional chaining, ver mi notion para mas info, pero en resumen es para que no nos arroje error y solo nos lo deje como undefined, asi no nos detiene todo el proyecto ya que al cargarse el formulario evalua esto y como no hay/ no existe el arreglo errores entones nos  marcara un error, pero si ponemos ?. evaluara error y como no hay nada solo nos regresa un undefined sin tener un error en el codigo, ESTO ES PORQUE ERROR AUN NO EXISTE, YA QUE SOLO VA A EXISTIR CUANDO DEMOS CLICK EN SUBMIT, ANTES NO, ES POR ESO QUE NOS PODIA DAR ERROR Y CON EL ?. NOS SALVAMOS DE ESTO*/}
 
           <Form method='post'> {/* reemplazando la etiqueta form con el Componente DE REACT ROUTER DOM(no creado) Form */}
             <Formulario />
