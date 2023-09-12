@@ -1,3 +1,4 @@
+import {obtenerClientes} from '../../data/clientes'
 import Cliente from '../Cliente';
 import React from 'react'
 //Importando Hook useLoaderData para poder usar nuestra funcion loader
@@ -11,6 +12,10 @@ import { useLoaderData } from 'react-router-dom';
 //Nota: despues ya lo especificamos en nuestra ruta
 export function loader(){
   //Eliminando los clientes que teniamos y creamos en la carpeta data el archivo clientes.jsx para aligerar nuestro componente ya que ya tenemos el json-server
+  console.log(import.meta.env);
+  //Mandando llamar la funcion
+  const clientes = obtenerClientes(); //creando variable para obtener el return que estaba asignado a obtenerClientes;
+  return clientes; //y ahora retornando todos esos datos hacia nuestro loader que tiene como Hook useLoaderData
 }
 
 
