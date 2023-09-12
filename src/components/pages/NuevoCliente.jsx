@@ -16,12 +16,22 @@ export async function action({request}){ //los action van acompañados de un REQ
   //Ahora para recuperar los datos que metimos al formulario
   const datos = Object.fromEntries(formData);
 
+  const email = formData.get('email')
+
   //Validacion de los campos del formulario
   console.log(datos);
   const errores = [];
   if(Object.values(datos).includes('')){ //si alguno de ellos incluye 1 string vacio entonces...
     errores.push('Todos los campos son obligatorios'); //se añade 1 elemento a nuestro array vacio de errores con este mensaje tipo string
   }
+
+  //Validando que el email tenga el formato adecuado
+  let regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
+
+  if(!regex.test(email)){ //SI NO CUMPLE EL TEST EJECUTA ESTE CODIGO
+    errores.push('El email no es valido')
+  }
+
   //Retornar datos si hay errores
   if(Object.keys(errores).length){
     return errores; //tenemos que retornar algo para poder usarlo en la funcion de nuestro componente NuevoCliente, asi como fue en el Index, que retornamos los clientes para poder usarlo con el useLoaderData en nuestra funcion del componente
@@ -54,7 +64,8 @@ function NuevoCliente() {
           {errores?.length && errores.map((error, i)=> <Error key={i}>{error}</Error>)} {/* como vamos a tener multiples errores, entonces le añadimos un prop key={i}, la posicion que seria ese error */}
           {/* errores?. es un optional chaining, ver mi notion para mas info, pero en resumen es para que no nos arroje error y solo nos lo deje como undefined, asi no nos detiene todo el proyecto ya que al cargarse el formulario evalua esto y como no hay/ no existe el arreglo errores entones nos  marcara un error, pero si ponemos ?. evaluara error y como no hay nada solo nos regresa un undefined sin tener un error en el codigo, ESTO ES PORQUE ERROR AUN NO EXISTE, YA QUE SOLO VA A EXISTIR CUANDO DEMOS CLICK EN SUBMIT, ANTES NO, ES POR ESO QUE NOS PODIA DAR ERROR Y CON EL ?. NOS SALVAMOS DE ESTO*/}
 
-          <Form method='post'> {/* reemplazando la etiqueta form con el Componente DE REACT ROUTER DOM(no creado) Form */}
+          <Form noValidate method='post'> {/* reemplazando la etiqueta form con el Componente DE REACT ROUTER DOM(no creado) Form */}
+          {/* noValidate va a desactivar la validacion PROPIA DE HTML, hacemos esto porque queremos poner nosotros nuestra propia validacion con nuestro regex */}
             <Formulario />
 
             <input type="submit" className='mt-5 w-full bg-blue-800 p-3 uppercase font-bold text-white text-lg' /> {/* este button al darle click VA A BUSCAR EL ACTION DE ESTE FORM */}
