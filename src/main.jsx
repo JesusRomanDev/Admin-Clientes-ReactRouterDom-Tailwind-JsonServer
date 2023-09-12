@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Layout from './components/Layout'
-import NuevoCliente from './components/pages/NuevoCliente'
+//Importamos la funcion que usara nuesto From en el archivo NuevoCliente
+import NuevoCliente, {action as nuevoClienteAction} from './components/pages/NuevoCliente'
 //Nota al importar el loader, de preferencia siempre guardarlo con un nuevo nombre
 import Index, {loader as clientesLoader} from './components/pages/Index'
 
@@ -19,7 +20,8 @@ const router = createBrowserRouter([ //createBrowserRouter toma un array de obje
       },
       {
           path: '/clientes/nuevo',
-          element: <NuevoCliente />
+          element: <NuevoCliente />,
+          action: nuevoClienteAction //definiendole el action que tendra nuestro From al darle submit en el archivo NuevoCliente
       }
     ]
   },

@@ -1,7 +1,15 @@
 import React from 'react'
 //Este Hook nos permite navegar de forma programada, no a traves de un enlace sino de un boton
-import {useNavigate} from 'react-router-dom'
+//El Form reemplaza lo que hemos estado usando para hacerle el submit a los formularios (handleSubmit), entonces lo importamos
+import {useNavigate, Form} from 'react-router-dom'
 import Formulario from '../Formulario';
+
+//En vez de ACTION, que regularmente lo tenemos en los formularios, crearemos una funcion similar a un loader para nuesto Form
+//recordando que se tiene que importar en donde declaramos este componente, en este caso en el archivo Main.jsx
+export function action(){
+  console.log('submit');
+  return null;
+}
 
 function NuevoCliente() {
 
@@ -20,11 +28,11 @@ function NuevoCliente() {
         </div>
 
         <div className='bg-white shadow rounded-md md:w-3/4 mx-auto px-5 py-10 mt-20'>
-          <form>
+          <Form method='post'> {/* reemplazando la etiqueta form con el Componente DE REACT ROUTER DOM(no creado) Form */}
             <Formulario />
 
             <input type="submit" className='mt-5 w-full bg-blue-800 p-3 uppercase font-bold text-white text-lg' />
-          </form>
+          </Form>
         </div>
     </div>
   )
