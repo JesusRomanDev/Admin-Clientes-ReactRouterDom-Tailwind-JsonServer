@@ -6,8 +6,12 @@ import Formulario from '../Formulario';
 
 //En vez de ACTION, que regularmente lo tenemos en los formularios, crearemos una funcion similar a un loader para nuesto Form
 //recordando que se tiene que importar en donde declaramos este componente, en este caso en el archivo Main.jsx
-export function action(){
-  console.log('submit');
+//Nota: tenemos que hacer la funcion ASINCRONA, ya que el request va a tardar un poco en procesar y obtener los datos del formData
+export async function action({request}){ //los action van acompañados de un REQUEST, ya que es el que esta haciendo la peticion hacia el action
+  const formData = await request.formData(); //formData existe en el proto
+
+  //Ahora para recuperar los datos que metimos al formulario
+  const datos = Object.fromEntries(formData);
   return null;
 }
 
