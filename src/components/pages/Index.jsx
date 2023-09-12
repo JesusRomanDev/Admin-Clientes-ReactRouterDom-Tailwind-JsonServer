@@ -10,45 +10,7 @@ import { useLoaderData } from 'react-router-dom';
 //y no con otro nombre es que asi espera ese nombre react-router-dom
 //Nota: despues ya lo especificamos en nuestra ruta
 export function loader(){
-  const clientes = [
-    {
-        id: 1,
-        nombre: 'Juan',
-        telefono: 102013313,
-        email: "juan@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-    {
-        id: 2,
-        nombre: 'Karen',
-        telefono: 138198313,
-        email: "karen@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-    {
-        id: 3,
-        nombre: 'Josue',
-        telefono: 31983913,
-        email: "josue@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-    {
-        id: 4,
-        nombre: 'Miguel',
-        telefono: 319381983,
-        email: "miguel@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-    {
-        id: 5,
-        nombre: 'Pedro',
-        telefono: 1398198938,
-        email: "pedro@juan.com",
-        empresa: 'Codigo Con Juan'
-    },
-  ];
-
-  return clientes; //retorname clientes al Hook useLoaderData
+  //Eliminando los clientes que teniamos y creamos en la carpeta data el archivo clientes.jsx para aligerar nuestro componente ya que ya tenemos el json-server
 }
 
 
