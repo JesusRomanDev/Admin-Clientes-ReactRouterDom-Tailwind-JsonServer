@@ -36,3 +36,19 @@ export async function agregarCliente(datos){
         console.log(error);
     }
 }
+
+//Para mandar actualizar cliente editado
+export async function actualizarCliente(id, datos){
+    try {
+        const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(datos), //transformando objeto a JSON
+            headers: {
+                'Content-type': 'application/json' //esta peticion es de tipo JSON
+            }
+        })
+        await respuesta.json();
+    } catch (error) {
+        
+    }
+}

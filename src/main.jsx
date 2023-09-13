@@ -8,7 +8,7 @@ import NuevoCliente, {action as nuevoClienteAction} from './components/pages/Nue
 //Nota al importar el loader, de preferencia siempre guardarlo con un nuevo nombre
 import Index, {loader as clientesLoader} from './components/pages/Index'
 import ErrorPage from './components/ErrorPage'
-import EditarCliente, {loader as editarClienteLoader} from './components/pages/EditarCliente'
+import EditarCliente, {loader as editarClienteLoader, action as editarClienteAction} from './components/pages/EditarCliente'
 
 const router = createBrowserRouter([ //createBrowserRouter toma un array de objetos donde pondremos nuestras rutas, este se lo pasamos al Provider
   {
@@ -32,7 +32,8 @@ const router = createBrowserRouter([ //createBrowserRouter toma un array de obje
         //este ira cambiando puede ser /clientes/1/editar o /clientes/2/editar o /clientes/3/editar depende donde le demos click
         element: <EditarCliente />,
         loader: editarClienteLoader,
-        errorElement: <ErrorPage />
+        action: editarClienteAction,
+        errorElement: <ErrorPage />,
 
       }
     ]
