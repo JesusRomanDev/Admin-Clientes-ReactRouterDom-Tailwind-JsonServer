@@ -30,7 +30,8 @@ const router = createBrowserRouter([ //createBrowserRouter toma un array de obje
         path: '/clientes/:clienteId/editar', //el :clienteId puede ser cualquier nombre, solo con que haga referencia a lo que es,
         //este ira cambiando puede ser /clientes/1/editar o /clientes/2/editar o /clientes/3/editar depende donde le demos click
         element: <EditarCliente />,
-        loader: editarClienteLoader
+        loader: editarClienteLoader,
+        errorElement: <ErrorPage />
 
       }
     ]

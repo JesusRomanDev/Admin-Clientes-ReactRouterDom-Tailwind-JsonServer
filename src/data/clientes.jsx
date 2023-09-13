@@ -9,6 +9,13 @@ export async function obtenerClientes(){
     return resultado; //retornando el resultado hacia nuestra funcion
 }
 
+export async function obtenerCliente(id){
+    const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/${id}`); //esto nos retorna el objeto con el id TAL
+    const resultado = await respuesta.json();
+    console.log(resultado);
+    return resultado; //retornando el resultado hacia nuestra funcion
+}
+
 export async function agregarCliente(datos){
     // console.log(datos);
     try {
