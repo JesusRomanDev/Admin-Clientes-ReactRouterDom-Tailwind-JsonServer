@@ -52,3 +52,16 @@ export async function actualizarCliente(id, datos){
         
     }
 }
+
+export async function eliminarCliente(id){
+    // console.log(id);
+    // console.log('eLIMINANDO');
+    try {
+        const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+            method: 'DELETE'
+        })
+        await respuesta.json();
+    } catch (error) {
+        
+    }
+}

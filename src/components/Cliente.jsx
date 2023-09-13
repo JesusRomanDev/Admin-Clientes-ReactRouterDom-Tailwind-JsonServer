@@ -1,5 +1,11 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Form, redirect } from 'react-router-dom';
+import { eliminarCliente } from '../data/clientes';
+
+export async function action({params}){
+    await eliminarCliente(params.clienteId)
+    return redirect('/')
+}
 
 function Cliente({cliente}) {
     //agregando useNavigate a una variable para usarlo cuando le damos click a editar
@@ -26,9 +32,23 @@ function Cliente({cliente}) {
                     Editar
                 </button>
 
-                <button className='text-red-600 hover:text-red-700 uppercase font-bold text-xs' type='button'>
-                    Eliminar
-                </button>
+                {/* Hay que rodear este boton con un From para poder enviar una accion */}
+                <Form 
+                    method='post' 
+                    action={`/clientes/${id}/eliminar`}
+                    onSubmit={(e) => {
+                        if(!confirm('Deseas eliminar este registro?')){
+                            e.preventDefault(); /* suena un poco raro pero si el usuario presiona en aceptar no prevenimos la action por default y se ejecuta el action  */
+                        }
+                    }}
+                >
+                    <button 
+                        className='text-red-600 hover:text-red-700 uppercase font-bold text-xs' 
+                        type='submit'
+                    >
+                        Eliminar
+                    </button>
+                </Form>
             </td>
         </tr>
     )
