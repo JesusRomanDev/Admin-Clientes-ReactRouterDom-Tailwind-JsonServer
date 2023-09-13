@@ -24,7 +24,8 @@ const router = createBrowserRouter([ //createBrowserRouter toma un array de obje
       {
           path: '/clientes/nuevo',
           element: <NuevoCliente />,
-          action: nuevoClienteAction //definiendole el action que tendra nuestro From al darle submit en el archivo NuevoCliente
+          action: nuevoClienteAction, //definiendole el action que tendra nuestro From al darle submit en el archivo NuevoCliente
+          errorElement: <ErrorPage />
       },
       {
         path: '/clientes/:clienteId/editar', //el :clienteId puede ser cualquier nombre, solo con que haga referencia a lo que es,
