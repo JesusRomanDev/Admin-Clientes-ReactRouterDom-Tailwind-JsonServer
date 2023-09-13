@@ -2,9 +2,11 @@ import React from 'react'
 //Este Hook nos permite navegar de forma programada, no a traves de un enlace sino de un boton
 //El Form reemplaza lo que hemos estado usando para hacerle el submit a los formularios (handleSubmit), entonces lo importamos
 //El useActionData nos sirve para cuando retornemos algo de nuestra funcion y usarlo en LA FUNCION DE NUESTRO COMPONENTE
-import {useNavigate, Form, useActionData} from 'react-router-dom'
+import {useNavigate, Form, useActionData, redirect} from 'react-router-dom'
 import Formulario from '../Formulario';
 import Error from '../Error';
+//Importando la funcion de agregar cliente para cuanod agreguemos un nuevo cliente
+import {agregarCliente} from '../../data/clientes'
 
 //En vez de ACTION, que regularmente lo tenemos en los formularios, crearemos una funcion similar a un loader para nuesto Form
 //recordando que se tiene que importar en donde declaramos este componente, en este caso en el archivo Main.jsx
@@ -37,7 +39,13 @@ export async function action({request}){ //los action van acompañados de un REQ
     return errores; //tenemos que retornar algo para poder usarlo en la funcion de nuestro componente NuevoCliente, asi como fue en el Index, que retornamos los clientes para poder usarlo con el useLoaderData en nuestra funcion del componente
     //Nota: a diferencia de useLoaderData, AQUI USAREMOS useActionData para poder usar lo que retornemos
   }
-  return null;
+  //Aqui ya paso toda la validacion, entonces llamamos a la funcion para agregar el cliente con el argumento de datos
+  //No quiero que la siguiente linea se ejecute, entonces ponemos un await hasta que finalice nuestra funcion
+  await agregarCliente(datos);
+  //Ahora bien, cuando acabe queremos que nos redireccione hacia la pestaña clientes una vez terminado de agregar un cliente
+  return redirect('/')
+  //Nota: cuando hay actions o loaders, tenemos que redireccionar por medio de redirect, cuando es por botones o HTML es mejor
+  //por navigate(-1) como aqui abajo en el button del HTML
 }
 
 function NuevoCliente() {
